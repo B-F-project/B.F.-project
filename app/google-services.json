@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "549322519157",
+    "firebase_url": "https://barrier-free-d309e-default-rtdb.firebaseio.com",
+    "project_id": "barrier-free-d309e",
+    "storage_bucket": "barrier-free-d309e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549322519157:android:122d8df55cba15bf09be3c",
+        "android_client_info": {
+          "package_name": "com.example.stt_nlp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "549322519157-1h3lh06cpk1r2834ffq198tt5m0dgk5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALyGjuYgolZ2CoYgRiZiesYY5vhZ92nXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "549322519157-1h3lh06cpk1r2834ffq198tt5m0dgk5s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

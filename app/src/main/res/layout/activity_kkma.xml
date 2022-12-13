@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Kkma">
+
+        <TextView
+            android:id="@+id/Kkma_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="분석"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/Kkma_analyze1_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="형태소 분석"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/Kkma_title_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/Kkma_result1_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="형태소 분석 결과"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/Kkma_analyze1_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/Kkma_analyze2_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="명사만 추출"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/Kkma_result1_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="25dp"/>
+
+        <TextView
+            android:id="@+id/Kkma_result2_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="명사 추출 결과"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/Kkma_analyze2_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="5dp"/>
+
+        <Button
+            android:id="@+id/Kkma_back_to_main_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다시하기"
+            app:layout_constraintTop_toBottomOf="@id/Kkma_result2_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:id="@+id/Kkma_translation_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="번역"
+            app:layout_constraintTop_toBottomOf="@id/Kkma_back_to_main_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
