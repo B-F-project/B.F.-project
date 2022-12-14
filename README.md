@@ -6,7 +6,7 @@ Gachon-University Graduation Project(22-23)
 
 [Introduction Video(22-1)](https://www.youtube.com/watch?v=wDGVZBWaSlU)
 
-[Breif Description Video(22-2)](https://www.youtube.com/watch?v=wDGVZBWaSlU)
+[Breif Description Video(22-2)](https://youtu.be/dgLG6T18XZI)
 
 ## **2. Features**
 > Convert real-time voice to sign language video
