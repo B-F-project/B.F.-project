@@ -15,19 +15,24 @@ Gachon-University Graduation Project(22-23)
 > voice data > text data(STT) > sign language word order text data(NLP) > generate skeleton video > generate 3D sign language video
 
 ## **4. Detailed Activities**
-> SplashActivity
+SplashActivity
+
 ![1](https://user-images.githubusercontent.com/71324520/207476537-eaa943e3-ea6a-4895-91d6-a4b2e527238c.jpg)
 
-> MainActivity(STT)
+MainActivity(STT)
+
 ![2](https://user-images.githubusercontent.com/71324520/207476730-06936905-d21d-419d-b491-98b992d4b7d6.jpg)
 
-> Kkma(NLP)
+Kkma(NLP)
+
 ![3](https://user-images.githubusercontent.com/71324520/207476808-30156b77-e7de-4f6d-b4f6-127c033dbbb5.jpg)
 
-> TranslationActivity
+TranslationActivity
+
 ![4](https://user-images.githubusercontent.com/71324520/207476860-acd5f92e-ed69-4d2d-a2bd-0ce26f1c2db0.jpg)
 
-> firebase
+firebase
+
 ![5](https://user-images.githubusercontent.com/71324520/207476967-5b42559f-ea0a-4d82-8975-1bcd61e6a76a.jpg)
 
 ## **5. Technology used in the project(To be added)**
