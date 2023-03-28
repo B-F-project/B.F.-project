@@ -17,6 +17,7 @@ import org.snu.ids.kkma.ma.MExpression;
 import org.snu.ids.kkma.ma.MorphemeAnalyzer;
 import org.snu.ids.kkma.ma.Sentence;
 
+import java.util.Arrays;
 import java.util.List;
 
 //view binding
@@ -43,6 +44,7 @@ public class Kkma extends AppCompatActivity {
         maTest(analyzeString, result1);
         extractTest(analyzeString, result2);
 
+
         backToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +57,8 @@ public class Kkma extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Log.d("Kkma_result_check : ", String.valueOf(result));
+
+                Log.d("result_check : ", Arrays.toString(result));
 //                Intent translationIntent = new Intent(getApplicationContext(), TranslationActivity.class);
 //                translationIntent.putExtra("resultArr", result);
 //                startActivity(translationIntent);
