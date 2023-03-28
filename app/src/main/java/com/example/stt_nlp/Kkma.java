@@ -55,9 +55,10 @@ public class Kkma extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent translationIntent = new Intent(getApplicationContext(), TranslationActivity.class);
-                translationIntent.putExtra("resultArr", result);
-                startActivity(translationIntent);
+                Log.d("Kkma_result_check : ", String.valueOf(result));
+//                Intent translationIntent = new Intent(getApplicationContext(), TranslationActivity.class);
+//                translationIntent.putExtra("resultArr", result);
+//                startActivity(translationIntent);
             }
         });
 
