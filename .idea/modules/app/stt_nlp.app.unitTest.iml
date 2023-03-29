@@ -13,6 +13,7 @@
           <stringArguments>
             <stringArg name="classpath">
               <args>
+                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/176b402f77469fb5d13cdee15aa20ba4/transformed/jetified-kkma-2.1.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/af8eb7fb18689bad52af8173f70aa062/transformed/jetified-viewbinding-7.2.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/ab7e90b9185cb608c6d1ccfa6d5a8986/transformed/jetified-firebase-analytics-ktx-21.2.0-api.jar</arg>
@@ -114,6 +115,9 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/928c76054e93d704e43fe76f5d0e3fe6/transformed/jetified-j2objc-annotations-1.3.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/58619fafb6eea768abc9b4b742d2d039/transformed/jetified-disklrucache-4.11.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/8278e51a901ef5a76e6193e539b17efa/transformed/jetified-annotations-4.11.0.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/e1bc1ade94c3218ce665cb0b78a68b47/transformed/jetified-KOMORAN-3.3.4.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/886f3baa225d9146888519416d4c94be/transformed/jetified-commons-1.0.1.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/897c00c0daf76df139fda082decc9c71/transformed/jetified-aho-corasick-1.0.9.jar</arg>
                 <arg>$USER_HOME$/Library/Android/sdk/platforms/android-32/android.jar</arg>
                 <arg>$USER_HOME$/Library/Android/sdk/build-tools/30.0.3/core-lambda-stubs.jar</arg>
               </args>
@@ -193,6 +197,9 @@
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.j2objc:j2objc-annotations:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.github.bumptech.glide:disklrucache:4.11.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.github.bumptech.glide:annotations:4.11.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.shin285:KOMORAN:3.3.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.shineware:commons:1.0.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.shineware:aho-corasick:1.0.9" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.13.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: ./app/libs/kkma-2.1.jar" level="project" />

@@ -109,11 +109,14 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/1a064e903e73bd62683f7f49f01820a1/transformed/jetified-javawriter-2.1.1.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/98faf604733ca58bc1833786941332f9/transformed/jetified-javax.inject-1.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/fec2e528673d5dae911be296f6a6826f/transformed/constraintlayout-2.1.4-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/e1bc1ade94c3218ce665cb0b78a68b47/transformed/jetified-KOMORAN-3.3.4.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/9a6b95c3ba4cdf8e74325d4e0b944de4/transformed/jetified-kotlin-stdlib-jdk7-1.6.21.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/ac385b96e8a8958a086f0dcec9b7c859/transformed/jetified-kotlin-stdlib-1.7.10.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/7a0bff8c85a210819458df9640b48ef7/transformed/jetified-annotation-experimental-1.1.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/58619fafb6eea768abc9b4b742d2d039/transformed/jetified-disklrucache-4.11.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/8278e51a901ef5a76e6193e539b17efa/transformed/jetified-annotations-4.11.0.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/886f3baa225d9146888519416d4c94be/transformed/jetified-commons-1.0.1.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/897c00c0daf76df139fda082decc9c71/transformed/jetified-aho-corasick-1.0.9.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/384df602ef6f4b115d421c2d271550af/transformed/jetified-kotlin-stdlib-common-1.7.10.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/bdd5c53d5ae2c097a82fb70d73e2287d/transformed/jetified-annotations-13.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/2f998dd4058d1589c521d0814f533a6a/transformed/jetified-error_prone_annotations-2.14.0.jar</arg>
@@ -215,6 +218,9 @@
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.j2objc:j2objc-annotations:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.github.bumptech.glide:disklrucache:4.11.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.github.bumptech.glide:annotations:4.11.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.shin285:KOMORAN:3.3.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.shineware:commons:1.0.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.shineware:aho-corasick:1.0.9" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: ./app/libs/kkma-2.1.jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.ext:junit:1.1.3@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test:core:1.4.0@aar" level="project" />

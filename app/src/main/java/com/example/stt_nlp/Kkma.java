@@ -1,14 +1,14 @@
 package com.example.stt_nlp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.snu.ids.kkma.index.Keyword;
 import org.snu.ids.kkma.index.KeywordExtractor;
@@ -16,9 +16,12 @@ import org.snu.ids.kkma.index.KeywordList;
 import org.snu.ids.kkma.ma.MExpression;
 import org.snu.ids.kkma.ma.MorphemeAnalyzer;
 import org.snu.ids.kkma.ma.Sentence;
+import org.snu.ids.kkma.ma.Token;
 
 import java.util.Arrays;
 import java.util.List;
+
+import kr.co.shineware.nlp.komoran.core.Komoran;
 
 //view binding
 
@@ -112,5 +115,36 @@ public class Kkma extends AppCompatActivity {
         }
         result2.setText(text);
     }
+
+    //kkma 사용한 lematization
+    public String lemmatizeVerbs(String input) {
+        Kkma kkma = new Kkma();
+        Sentence[] sentences = kkma.Sentence(input);
+        StringBuilder lemmatizedVerbs = new StringBuilder();
+        for (Sentence sentence : sentences) {
+            Token[] tokens = kkma.tokensToJava(sentence.getTokens());
+            for (Token token : tokens) {
+                if (token.getPos().startsWith("VV")) { // 동사인지 확인
+                    String lemma = kkma.getMorphAnalyzer().getLemma(token.getMorph());
+                    lemmatizedVerbs.append(lemma).append(" ");
+                } else {
+                    lemmatizedVerbs.append(token.getMorph()).append(" ");
+                }
+            }
+            lemmatizedVerbs.append("\n");
+        }
+        return lemmatizedVerbs.toString();
+    }
+
+    //komoran버전
+    public String lemmatize(String word) {
+        Komoran komoran = new Komoran();
+        List<Pair<String, String>> morphtags = komoran.pos(word);
+        if (morphtags.get(0).getSecond().equals("VA") || morphtags.get(0).getSecond().equals("VV")) {
+            return morphtags.get(0).getFirst() + "다";
+        }
+        return word;
+    }
+
 
 }
