@@ -39,7 +39,9 @@ public class Kkma extends AppCompatActivity {
         Button translation = (Button) findViewById(R.id.Kkma_translation_btn);
 
         Intent intent = getIntent();
-        String analyzeString = intent.getStringExtra("analyizeM");
+//        String analyzeString = intent.getStringExtra("analyizeM");
+        //여기 아래에다가 원하는 예시 문장을 넣으면 됩니다.
+        String analyzeString = "나는 오늘 학교에 갔다";
         maTest(analyzeString, result1);
         extractTest(analyzeString, result2);
 
