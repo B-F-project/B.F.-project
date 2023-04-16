@@ -17,7 +17,13 @@ import org.snu.ids.kkma.ma.MExpression;
 import org.snu.ids.kkma.ma.MorphemeAnalyzer;
 import org.snu.ids.kkma.ma.Sentence;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //view binding
 
@@ -38,12 +44,17 @@ public class Kkma extends AppCompatActivity {
         Button backToMain = (Button) findViewById(R.id.Kkma_back_to_main_btn);
         Button translation = (Button) findViewById(R.id.Kkma_translation_btn);
 
+
         Intent intent = getIntent();
 //        String analyzeString = intent.getStringExtra("analyizeM");
         //여기 아래에다가 원하는 예시 문장을 넣으면 됩니다.
         String analyzeString = "나는 오늘 학교에 갔다";
         maTest(analyzeString, result1);
         extractTest(analyzeString, result2);
+
+        extractMorpheme(String.valueOf(result1.getText()));
+        //extractMorpheme();
+
 
         backToMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +99,7 @@ public class Kkma extends AppCompatActivity {
                     text.append("\n");
                 }
                 result1.setText(text);
+                Log.d("text append된 result1 확인", String.valueOf(text));
 
             }
             ma.closeLogger();
@@ -95,6 +107,58 @@ public class Kkma extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public static void extractMorpheme(String result1) {
+        if (result1.length() == 0) {
+            return;
+        }
+
+        Log.d("input String 확인", result1);
+
+        List<String> morphemes = new ArrayList<>();
+        List<String> tags = new ArrayList<>();
+
+        for (String line : result1.split("\n")) { //단어마다 쪼개기
+            line = line.trim(); //공백 제거
+            int tagStartIndex = line.indexOf("/");
+            if (tagStartIndex == -1) {
+                continue;
+            }
+
+            //문자별 index 확인
+            int cnt = 0;
+            for (String i : line.split("")) {
+                System.out.println("char " + cnt + ":" + i);
+                cnt ++;
+            }
+
+
+            int morphemeEndIndex = line.indexOf("/", tagStartIndex + 1);
+            int morphemeStartIndex = tagStartIndex + 1;
+            System.out.println("mSI = " + morphemeStartIndex + " mEI = " + morphemeEndIndex);
+            String morpheme = line.substring(morphemeStartIndex, morphemeEndIndex);
+            morphemes.add(morpheme);
+
+            int tagEndIndex = line.indexOf("/", morphemeEndIndex + 1);
+            if (tagEndIndex == -1) {
+                tagEndIndex = line.indexOf("]", morphemeEndIndex + 1);
+            }
+            int tagStartIndex2 = morphemeEndIndex + 1;
+            System.out.println("tSI = " + tagStartIndex2 + " tEI = " + tagEndIndex);
+            String tag = line.substring(tagStartIndex2, tagEndIndex);
+            tags.add(tag);
+        }
+
+        System.out.println("------------------------------");
+        System.out.println("Successfully finished morpheme");
+        // Print the morphemes and tags
+        for (int i = 0; i < morphemes.size(); i++) {
+            String morpheme = morphemes.get(i);
+            String tag = tags.get(i);
+            System.out.println(morpheme + ", " + tag);
+        }
+    }
+
 
     public static void extractTest(String string, TextView result2){
 
