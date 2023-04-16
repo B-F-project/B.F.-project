@@ -127,13 +127,43 @@ public class Kkma extends AppCompatActivity {
                     //VV없으면 그냥 pass한다.
                     else {
                         //유소연 파트.
+                        test = test.trim(); //공백 제거
+                        int tagStartIndex = test.indexOf("/");
+                        if (tagStartIndex == -1) { //input error
+                            continue;
+                        }
+
+                        //문자별 index 확인
+//                        int cnt = 0;
+//                        for (String k : test.split("")) {
+//                            System.out.println("char " + cnt + ":" + k);
+//                            cnt ++;
+//                        }
 
 
-                        //여기서 => 이전의 문장을 잡아옴.
-                        int spaceIndex = test.indexOf("=>"); // 첫 번째 띄어쓰기의 인덱스를 찾음
-                        String result_space = test.substring(0, spaceIndex - 1); // 첫 번째 띄어쓰기 이전의 부분 문자열 추출
-                        lemma.add(result_space);
-                        Log.d("passing value: ", lemma.get(j));
+                        int morphemeEndIndex = test.indexOf("/", tagStartIndex + 1);
+                        int morphemeStartIndex = tagStartIndex + 1;
+                        // index error 방지용
+                        // System.out.println("mSI = " + morphemeStartIndex + " mEI = " + morphemeEndIndex);
+                        String morpheme = test.substring(morphemeStartIndex, morphemeEndIndex);
+                        lemma.add(morpheme);
+
+                        int tagEndIndex = test.indexOf("/", morphemeEndIndex + 1);
+                        if (tagEndIndex == -1) {
+                            tagEndIndex = test.indexOf("]", morphemeEndIndex + 1);
+                        }
+                        int tagStartIndex2 = morphemeEndIndex + 1;
+                        // System.out.println("tSI = " + tagStartIndex2 + " tEI = " + tagEndIndex);
+                        String mtag = test.substring(tagStartIndex2, tagEndIndex);
+                        tag.add(mtag);
+
+                        //------------------------------
+
+                        //(이건 필요없는 코드)여기서 => 이전의 문장을 잡아옴.
+//                        int spaceIndex = test.indexOf("=>"); // 첫 번째 띄어쓰기의 인덱스를 찾음
+//                        String result_space = test.substring(0, spaceIndex - 1); // 첫 번째 띄어쓰기 이전의 부분 문자열 추출
+//                        lemma.add(result_space);
+//                        Log.d("passing value: ", lemma.get(j));
                     }
 
                     Log.d("st.get("+Integer.toString(j)+ ")에 뭐 들어가는지 확인", String.valueOf(st.get(j)));
