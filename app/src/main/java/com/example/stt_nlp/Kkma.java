@@ -127,6 +127,8 @@ public class Kkma extends AppCompatActivity {
                     //VV없으면 그냥 pass한다.
                     else {
                         //유소연 파트.
+
+
                         //여기서 => 이전의 문장을 잡아옴.
                         int spaceIndex = test.indexOf("=>"); // 첫 번째 띄어쓰기의 인덱스를 찾음
                         String result_space = test.substring(0, spaceIndex - 1); // 첫 번째 띄어쓰기 이전의 부분 문자열 추출

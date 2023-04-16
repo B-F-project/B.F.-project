@@ -2,7 +2,6 @@
   <library name="Gradle: com.google.firebase:firebase-common-ktx:20.2.0@aar">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/04ff79c63623cb657e55daf5c46f4492/transformed/jetified-firebase-common-ktx-20.2.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/04ff79c63623cb657e55daf5c46f4492/transformed/jetified-firebase-common-ktx-20.2.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/04ff79c63623cb657e55daf5c46f4492/transformed/jetified-firebase-common-ktx-20.2.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
