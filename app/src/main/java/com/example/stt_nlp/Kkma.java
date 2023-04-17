@@ -43,7 +43,7 @@ public class Kkma extends AppCompatActivity {
         Intent intent = getIntent();
 //        String analyzeString = intent.getStringExtra("analyizeM");
         //여기 아래에다가 원하는 예시 문장을 넣으면 됩니다.
-        String analyzeString = "나는 오늘 학교에 갔다.";
+        String analyzeString = "밥이 뜨거워";
         maTest(analyzeString, result1);
         extractTest(analyzeString, result2);
 
@@ -88,7 +88,9 @@ public class Kkma extends AppCompatActivity {
                     //add lemma
                     //VV가 있는 동사에 대해서만 작동하는 lemmatization코드
                     //st.get(j)로 들어온 예시 문장
+
                     String test = String.valueOf(st.get(j));
+                    //용언중 동사의 어간을 뽑아오는 용도
                     //만약 VV가 있으면
                     if(test.contains("VV")){
                         //VV앞의 / /에 있는 덩어리 뽑아오기 위한 코드 - split하고
@@ -108,22 +110,29 @@ public class Kkma extends AppCompatActivity {
                         //tag에 tag저장
                         tag.add(splitSentence[index]);
                     }
-                    //서술격 조사 "이다" -> . 예외처리
-//                    else if(test.contains("VCP")){
-//                        //VCP앞의 / /에 있는 덩어리 뽑아오기 위한 코드 - split하고
-//                        String[] splitSentence = test.split("/");
-//                        int index = -1;
-//                        //split된 덩어리들중 VCP를 가지고있는 덩어리의 인덱스 뽑아서
-//                        for(int k = 0; k < splitSentence.length; k++){
-//                            if(splitSentence[k].contains("VCP")){
-//                                index = k;
-//                                break;
-//                            }
-//                        }
-//                        //그 앞의 덩어리에 저장된 string서술격 조사에 +다 해서 lemma에 집어넣음.
-//                        lemma.add("+splitSentence[index-1]+"다");
-//                        Log.d("VCP value: ", lemma.get(j));
-//                    }
+
+                    //용언중 형용사의 어간을 뽑아오는 용도
+                    //만약 VA가 있으면
+                    if(test.contains("VA")){
+                        //VA앞의 / /에 있는 덩어리 뽑아오기 위한 코드 - split하고
+                        String[] splitSentence = test.split("/");
+                        int index = -1;
+                        //split된 덩어리들중 VA를 가지고있는 문장의 인덱스 뽑아서
+                        for(int k = 0; k < splitSentence.length; k++){
+                            if(splitSentence[k].contains("VA")){
+                                index = k;
+                                break;
+                            }
+                        }
+                        //그 앞의 덩어리에 저장된 string(어간)에 +다 해서 lemma에 집어넣음.
+                        //lemma에 VA에해당하는 거 저장
+                        lemma.add(splitSentence[index-1]+"다");
+                        Log.d("VA value: ", lemma.get(j));
+                        //tag에 tag저장
+                        tag.add(splitSentence[index]);
+                    }
+
+
                     //VV없으면 그냥 pass한다.
                     else {
                         //유소연 파트.
