@@ -8,13 +8,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.snu.ids.kkma.index.Keyword;
 import org.snu.ids.kkma.index.KeywordExtractor;
 import org.snu.ids.kkma.index.KeywordList;
 import org.snu.ids.kkma.ma.MExpression;
-import org.snu.ids.kkma.ma.Morpheme;
 import org.snu.ids.kkma.ma.MorphemeAnalyzer;
 import org.snu.ids.kkma.ma.Sentence;
 
@@ -39,19 +39,33 @@ public class Kkma extends AppCompatActivity {
         TextView result2 = (TextView) findViewById(R.id.Kkma_result2_tv);
         Button backToMain = (Button) findViewById(R.id.Kkma_back_to_main_btn);
         Button translation = (Button) findViewById(R.id.Kkma_translation_btn);
+        EditText test = (EditText) findViewById(R.id.Kkma_analyze1_tv);
 
         Intent intent = getIntent();
 //        String analyzeString = intent.getStringExtra("analyizeM");
         //여기 아래에다가 원하는 예시 문장을 넣으면 됩니다.
-        String analyzeString = "나는 오늘 학교에 갔다.";
-        maTest(analyzeString, result1);
-        extractTest(analyzeString, result2);
+        //그랬는데 직접 입력받게 잠깐 바꿈 위의 코드가 stt결과임.
+
+//        String testString = test.getText().toString();
+//        String analyzeString = testString;
+
+        //주석 처리된게 원래 코드
+//        maTest(analyzeString, result1, result2);
+//        extractTest(analyzeString, result2);
 
         backToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent backIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(backIntent);
+//                Intent backIntent = new Intent(getApplicationContext(), MainActivity.class);
+//                startActivity(backIntent);
+                lemma.clear();
+                tag.clear();
+                String testString = test.getText().toString();
+                String analyzeString = testString;
+                Log.d("test_value", test.getText().toString());
+                Log.d("analyzeString_value", analyzeString);
+                maTest(analyzeString, result1, result2);
+//                extractTest(analyzeString, result2);
             }
         });
 
@@ -67,7 +81,7 @@ public class Kkma extends AppCompatActivity {
 
 
     }
-    public static void maTest(String string, TextView result1) {
+    public static void maTest(String string, TextView result1, TextView result2) {
         try{
             MorphemeAnalyzer ma = new MorphemeAnalyzer();
             ma.createLogger(null);
@@ -76,6 +90,7 @@ public class Kkma extends AppCompatActivity {
             ret = ma.leaveJustBest(ret);
             List<Sentence>stl = ma.divideToSentences(ret);
             StringBuilder text = new StringBuilder();
+            StringBuilder lemmatization_done = new StringBuilder();
             for(int i = 0;i < stl.size();i++){
                 Sentence st = stl.get(i);
 
@@ -108,22 +123,45 @@ public class Kkma extends AppCompatActivity {
                         //tag에 tag저장
                         tag.add(splitSentence[index]);
                     }
-                    //서술격 조사 "이다" -> . 예외처리
-//                    else if(test.contains("VCP")){
-//                        //VCP앞의 / /에 있는 덩어리 뽑아오기 위한 코드 - split하고
-//                        String[] splitSentence = test.split("/");
-//                        int index = -1;
-//                        //split된 덩어리들중 VCP를 가지고있는 덩어리의 인덱스 뽑아서
-//                        for(int k = 0; k < splitSentence.length; k++){
-//                            if(splitSentence[k].contains("VCP")){
-//                                index = k;
-//                                break;
-//                            }
-//                        }
-//                        //그 앞의 덩어리에 저장된 string서술격 조사에 +다 해서 lemma에 집어넣음.
-//                        lemma.add("+splitSentence[index-1]+"다");
-//                        Log.d("VCP value: ", lemma.get(j));
-//                    }
+                    //용언중 형용사의 어간을 뽑아오는 용도
+                    //만약 VA가 있으면
+                    else if(test.contains("VA") ||test.contains("VXV")){
+                        //VA앞의 / /에 있는 덩어리 뽑아오기 위한 코드 - split하고
+                        String[] splitSentence = test.split("/");
+                        int index = -1;
+                        //split된 덩어리들중 VA를 가지고있는 문장의 인덱스 뽑아서
+                        for(int k = 0; k < splitSentence.length; k++){
+                            if(splitSentence[k].contains("VA")|| splitSentence[k].contains("VXV")){
+                                index = k;
+                                break;
+                            }
+                        }
+                        //그 앞의 덩어리에 저장된 string(어간)에 +다 해서 lemma에 집어넣음.
+                        //lemma에 VA에해당하는 거 저장
+                        lemma.add(splitSentence[index-1]+"다");
+                        Log.d("VA value: ", lemma.get(j));
+                        //tag에 tag저장
+                        tag.add(splitSentence[index]);
+                    }
+                    else if(test.contains("XSV")){
+                        //VV앞의 / /에 있는 덩어리 뽑아오기 위한 코드 - split하고
+                        String[] splitSentence = test.split("/");
+                        int index = -1;
+                        //split된 덩어리들중 VV를 가지고있는 문장의 인덱스 뽑아서
+                        for(int k = 0; k < splitSentence.length; k++){
+                            if(splitSentence[k].contains("XSV")){
+                                index = k;
+                                break;
+                            }
+                        }
+                        //그 앞의 덩어리에 저장된 string(어간)에 +다 해서 lemma에 집어넣음.
+                        //lemma에 VV에해당하는 거 저장
+                        lemma.add(splitSentence[index-3]+splitSentence[index-1]+"다");
+                        Log.d("XSV value: ", lemma.get(j));
+                        //tag에 tag저장
+                        tag.add(splitSentence[index]);
+                    }
+
                     //VV없으면 그냥 pass한다.
                     else {
                         //유소연 파트.
@@ -169,8 +207,11 @@ public class Kkma extends AppCompatActivity {
                     Log.d("st.get("+Integer.toString(j)+ ")에 뭐 들어가는지 확인", String.valueOf(st.get(j)));
                     text.append(String.valueOf(st.get(j)));
                     text.append("\n");
+                    lemmatization_done.append(String.valueOf(lemma.get(j)));
+                    lemmatization_done.append("\n");
                 }
                 result1.setText(text);
+                result2.setText(lemmatization_done);
                 //최종 결과 확인
                 for(int l = 0; l<lemma.size(); l++){
                     Log.d("lemma_last_result: "+Integer.toString(l), lemma.get(l));
@@ -216,7 +257,8 @@ public class Kkma extends AppCompatActivity {
             text.append(kwrd.getCnt());
             text.append("\n");
         }
-        result2.setText(text);
+        //명사만 추출 파트뭐 돌아가긴 하는데 그게 결과로 나오진 않는다.
+//        result2.setText(text);
     }
 
 }
