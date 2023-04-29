@@ -24,11 +24,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="20dp"/>
 
-        <EditText
+        <TextView
             android:id="@+id/Kkma_analyze1_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="여기다가 분석할 문장을 넣어주세요"
+            android:text="input 문장이 여기에 들어감"
             android:textSize="25sp"
             android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/Kkma_title_tv"
@@ -65,7 +65,7 @@
             android:id="@+id/Kkma_result2_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="명사 추출 결과"
+            android:text="분석 결과"
             android:gravity="center"
             android:textSize="20sp"
             android:textColor="@color/black"
@@ -78,7 +78,7 @@
             android:id="@+id/Kkma_back_to_main_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="원래 다시하기 지금 잠깐 run"
+            android:text="뒤로가기"
             app:layout_constraintTop_toBottomOf="@id/Kkma_result2_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -39,10 +39,12 @@ public class Kkma extends AppCompatActivity {
         TextView result2 = (TextView) findViewById(R.id.Kkma_result2_tv);
         Button backToMain = (Button) findViewById(R.id.Kkma_back_to_main_btn);
         Button translation = (Button) findViewById(R.id.Kkma_translation_btn);
-        EditText test = (EditText) findViewById(R.id.Kkma_analyze1_tv);
+        TextView inputSentence = (TextView) findViewById(R.id.Kkma_analyze1_tv);
 
+        //stt의 결과를 받아옵니다. 이걸 input으로 집어넣습니다.
         Intent intent = getIntent();
-//        String analyzeString = intent.getStringExtra("analyizeM");
+        String analyzeString = intent.getStringExtra("analyizeM");
+        inputSentence.setText(analyzeString);
         //여기 아래에다가 원하는 예시 문장을 넣으면 됩니다.
         //그랬는데 직접 입력받게 잠깐 바꿈 위의 코드가 stt결과임.
 
@@ -50,22 +52,19 @@ public class Kkma extends AppCompatActivity {
 //        String analyzeString = testString;
 
         //주석 처리된게 원래 코드
-//        maTest(analyzeString, result1, result2);
+        //lemma 비우고, tag 비우고
+        lemma.clear();
+        tag.clear();
+        maTest(analyzeString, result1, result2);
 //        extractTest(analyzeString, result2);
 
         backToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent backIntent = new Intent(getApplicationContext(), MainActivity.class);
-//                startActivity(backIntent);
-                lemma.clear();
-                tag.clear();
-                String testString = test.getText().toString();
-                String analyzeString = testString;
-                Log.d("test_value", test.getText().toString());
-                Log.d("analyzeString_value", analyzeString);
-                maTest(analyzeString, result1, result2);
-//                extractTest(analyzeString, result2);
+                Intent backIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(backIntent);
+
+
             }
         });
 
@@ -74,7 +73,7 @@ public class Kkma extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent translationIntent = new Intent(getApplicationContext(), TranslationActivity.class);
-                translationIntent.putExtra("resultArr", result);
+                translationIntent.putExtra("resultArr", lemma);
                 startActivity(translationIntent);
             }
         });
