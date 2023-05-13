@@ -64,11 +64,10 @@ class MainActivity : AppCompatActivity() {
         // 말하기 시작할 준비가되면 호출
         override fun onReadyForSpeech(params: Bundle) {
             Toast.makeText(applicationContext, "음성인식 시작", Toast.LENGTH_SHORT).show()
-            binding.mainStatusCheckTv.text = "이제 말씀하세요!"
         }
         // 말하기 시작했을 때 호출
         override fun onBeginningOfSpeech() {
-            binding.mainStatusCheckTv.text = "잘 듣고 있어요."
+            binding.mainStatusTv.text = "음성인식 중 입니다.\n계속해서 말씀해주세요."
         }
         // 입력받는 소리의 크기를 알려줌
         override fun onRmsChanged(rmsdB: Float) {}
@@ -76,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         override fun onBufferReceived(buffer: ByteArray) {}
         // 말하기를 중지하면 호출
         override fun onEndOfSpeech() {
-            binding.mainStatusCheckTv.text = "끝!"
+
         }
         // 오류 발생했을 때 호출
         override fun onError(error: Int) {
@@ -92,19 +91,33 @@ class MainActivity : AppCompatActivity() {
                 SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> "말하는 시간초과"
                 else -> "알 수 없는 오류임"
             }
-            binding.mainStatusCheckTv.text = "에러 발생: $message"
+            binding.mainStatusTv.text = "에러 발생: $message"
         }
         // 인식 결과가 준비되면 호출
         override fun onResults(results: Bundle) {
             // 말을 하면 ArrayList에 단어를 넣고 textView에 단어를 이어줌
             val matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-            for (i in matches!!.indices) binding.mainDirectionTv.text = matches[i]
+            for (i in matches!!.indices) binding.mainStatusTv.text = matches[i]
 
-            //안보이던 버튼이 다시 보이기 시작
-            binding.mainAnalyzeBtn.visibility = View.VISIBLE
+            //보이던 버튼 안보이게 처리
+            binding.mainRecordBtn.visibility = View.GONE
+
+            //안보이던 버튼들 보이기 시작
+            binding.mainReRecognitionSttBtnIv.visibility = View.VISIBLE
+            binding.mainPassToNextBtn.visibility = View.VISIBLE
+
+            //STT다시 시작버튼에 대한 클릭리스너 작성
+            binding.mainReRecognitionSttBtnIv.setOnClickListener {
+                // Activity를 처음부터 다시 시작하는 코드를 여기에 작성합니다.
+                val intent = Intent(this@MainActivity, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                finish()
+            }
+
             //분석버튼에 대한 클릭리스너 작성
-            binding.mainAnalyzeBtn.setOnClickListener {
-                var sendString = binding.mainDirectionTv.text
+            binding.mainPassToNextBtn.setOnClickListener {
+                var sendString = binding.mainStatusTv.text
                 var intent = Intent(this@MainActivity, Kkma::class.java)
                 intent.putExtra("analyizeM",sendString)
                 startActivity(intent)

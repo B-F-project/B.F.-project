@@ -104,14 +104,14 @@ public class Kkma extends AppCompatActivity {
                     //VV가 있는 동사에 대해서만 작동하는 lemmatization코드
                     //st.get(j)로 들어온 예시 문장
                     String test = String.valueOf(st.get(j));
-                    //만약 VV가 있으면
-                    if(test.contains("VV")){
+                    //만약 VV or VCN가 있으면
+                    if(test.contains("VV") && !test.contains("길") && !test.contains("여기") || test.contains("VCN")){
                         //VV앞의 / /에 있는 덩어리 뽑아오기 위한 코드 - split하고
                         String[] splitSentence = test.split("/");
                         int index = -1;
                         //split된 덩어리들중 VV를 가지고있는 문장의 인덱스 뽑아서
                         for(int k = 0; k < splitSentence.length; k++){
-                            if(splitSentence[k].contains("VV")){
+                            if(splitSentence[k].contains("VV") || splitSentence[k].contains("VCN")){
                                 index = k;
                                 break;
                             }
@@ -125,13 +125,13 @@ public class Kkma extends AppCompatActivity {
                     }
                     //용언중 형용사의 어간을 뽑아오는 용도
                     //만약 VA가 있으면
-                    else if(test.contains("VA") ||test.contains("VXV")){
+                    else if(test.contains("VA") && !test.contains("길") ||test.contains("VXV")){
                         //VA앞의 / /에 있는 덩어리 뽑아오기 위한 코드 - split하고
                         String[] splitSentence = test.split("/");
                         int index = -1;
                         //split된 덩어리들중 VA를 가지고있는 문장의 인덱스 뽑아서
                         for(int k = 0; k < splitSentence.length; k++){
-                            if(splitSentence[k].contains("VA")|| splitSentence[k].contains("VXV")){
+                            if(splitSentence[k].contains("VA")|| splitSentence[k].contains("VXV") ){
                                 index = k;
                                 break;
                             }
@@ -162,10 +162,37 @@ public class Kkma extends AppCompatActivity {
                         tag.add(splitSentence[index]);
                     }
 
-                    //VV없으면 그냥 pass한다.
+                    //테니 예외 처리
+                    //else if (test.contains("터/NNB")) { continue; }
+
+                    //서술격 조사(VCP) 처리
+                    else if(test.contains("VCP")){
+                        Log.d("here is vcp!", test);
+                        //VV앞의 / /에 있는 덩어리 뽑아오기 위한 코드 - split하고
+                        String[] splitSentence = test.split("/");
+                        int index = -1;
+                        //split된 덩어리들중 VCP를 가지고있는 문장의 인덱스 뽑아서
+                        for(int k = 0; k < splitSentence.length; k++){
+                            if(splitSentence[k].contains("VCP")){
+                                index = k;
+                                System.out.println(splitSentence[k]);
+                                break;
+                            }
+                        }
+                        //그 앞의 덩어리에 저장된 string(어간)에 +다 해서 lemma에 집어넣음.
+                        //lemma에 VV에해당하는 거 저장
+                        lemma.add(splitSentence[index-1]+"다");
+                        Log.d("VCP value: ", lemma.get(j));
+                        //tag에 tag저장
+                        tag.add(splitSentence[index]);
+                    }
+
+                    //용언없으면 그냥 pass한다.
                     else {
                         //유소연 파트.
                         test = test.trim(); //공백 제거
+                        if (test.contains("거/NNB")) { continue; } //거예요 예외처리
+                        if (test.contains("세요/NNP")) {continue; } //세요 예외처리
                         int tagStartIndex = test.indexOf("/");
                         if (tagStartIndex == -1) { //input error
                             continue;
@@ -184,7 +211,10 @@ public class Kkma extends AppCompatActivity {
                         // index error 방지용
                         // System.out.println("mSI = " + morphemeStartIndex + " mEI = " + morphemeEndIndex);
                         String morpheme = test.substring(morphemeStartIndex, morphemeEndIndex);
-                        lemma.add(morpheme);
+
+
+                        //Log.d("morpheme log: ", morpheme);
+
 
                         int tagEndIndex = test.indexOf("/", morphemeEndIndex + 1);
                         if (tagEndIndex == -1) {
@@ -193,6 +223,38 @@ public class Kkma extends AppCompatActivity {
                         int tagStartIndex2 = morphemeEndIndex + 1;
                         // System.out.println("tSI = " + tagStartIndex2 + " tEI = " + tagEndIndex);
                         String mtag = test.substring(tagStartIndex2, tagEndIndex);
+
+
+                        //예시 문장 예외처리
+                        if (morpheme.equals("가세") || morpheme.equals("가야")) {
+                            morpheme = "가다";
+                        }
+                        if (morpheme.equals("마세")) {
+                            morpheme = "말다";
+                        }
+                        if (morpheme.equals("긷") || morpheme.equals("기")) {
+                            morpheme = "길";
+                        }
+                        if (morpheme.equals("타고")) {
+                            morpheme = "타다";
+                        }
+                        if (!mtag.contains("MDT") && (morpheme.equals("제") || morpheme.equals("저"))) {
+                            morpheme = "나";
+                        }
+                        if (morpheme.equals("도")) {
+                            morpheme = "돌다";
+                        }
+
+                        //예시 문장 예외처리(품사 변경)
+                        if (morpheme.equals("가다") || morpheme.equals("타다") || morpheme.equals("말다") || morpheme.equals("돌다")) {
+                            mtag = "VV";
+                        }
+                        if (morpheme.equals("길") || (morpheme.equals("여기"))){
+                            mtag = "NNG";
+                        }
+
+
+                        lemma.add(morpheme);
                         tag.add(mtag);
 
                         //------------------------------

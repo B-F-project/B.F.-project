@@ -4,54 +4,102 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#F3F5FB">
 
-    <TextView
-        android:id="@+id/main_direction_tv"
-        android:layout_width="wrap_content"
+
+    //logo를 여기에
+    <LinearLayout
+        android:id="@+id/main_title_ll"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="아래버튼을 눌러서 음성인식을 시작해주세요"
-        android:layout_marginTop="150dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/barrierfree"
+            android:layout_marginStart="13dp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    //처음엔 안보이는 stt다시시작 버튼
+    <ImageView
+        android:id="@+id/main_re_recognition_stt_btn_iv"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/re_recognition_speech"
+        app:layout_constraintTop_toBottomOf="@id/main_title_ll"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="40dp"
+        android:translationZ="3dp"
+        android:visibility="gone"/>
+    //처음엔 안보이는 음성입력 받고난 뒤의 버튼
+    <ImageView
+        android:id="@+id/main_pass_to_next_btn"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/go_to_translation"
+        app:layout_constraintTop_toBottomOf="@id/main_title_ll"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"
+        android:visibility="gone"/>
 
     //음성인식 버튼
     <ImageView
         android:id="@+id/main_record_btn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ear_icon"
-        app:layout_constraintTop_toBottomOf="@id/main_direction_tv"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/mic"
+        app:layout_constraintTop_toBottomOf="@id/main_title_ll"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="15dp"
+        android:visibility="visible"/>
 
-    <TextView
-        android:id="@+id/main_status_check_tv"
+    <RelativeLayout
+        android:id="@+id/main_message_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/main_guide_btn_iv"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/message" />
+
+        <TextView
+            android:id="@+id/main_status_tv"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="저는 농인입니다.\n버튼을 누르고 음성을 입력해주세요"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/main_guide_btn_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="status"
-        android:textSize="30sp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/main_record_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50dp"/>
-
-    <Button
-        android:id="@+id/main_analyze_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="분석"
-        android:textSize="20sp"
-        android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@id/main_status_check_tv"
+        android:src="@drawable/question_pink"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"/>
+
 
 
 
