@@ -9,27 +9,14 @@
 
 
     //logo를 여기에
-    <LinearLayout
-        android:id="@+id/main_title_ll"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/main_logo"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:src="@drawable/logo2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"
-        android:paddingStart="10dp"
-        >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/barrierfree"
-            android:layout_marginStart="13dp"
-            android:layout_gravity="center"/>
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     //처음엔 안보이는 stt다시시작 버튼
     <ImageView
@@ -37,33 +24,34 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:src="@drawable/re_recognition_speech"
-        app:layout_constraintTop_toBottomOf="@id/main_title_ll"
+        app:layout_constraintTop_toBottomOf="@id/main_logo"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="40dp"
+        android:layout_marginTop="40dp"
         android:translationZ="3dp"
-        android:visibility="gone"/>
+        android:visibility="invisible"/>
     //처음엔 안보이는 음성입력 받고난 뒤의 버튼
     <ImageView
         android:id="@+id/main_pass_to_next_btn"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:src="@drawable/go_to_translation"
-        app:layout_constraintTop_toBottomOf="@id/main_title_ll"
+        app:layout_constraintTop_toBottomOf="@id/main_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="15dp"
-        android:visibility="gone"/>
+        android:layout_marginTop="60dp"
+        android:visibility="invisible"/>
 
     //음성인식 버튼
     <ImageView
         android:id="@+id/main_record_btn"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:src="@drawable/mic"
-        app:layout_constraintTop_toBottomOf="@id/main_title_ll"
+        app:layout_constraintTop_toBottomOf="@id/main_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="60dp"
         android:visibility="visible"/>
 
     <RelativeLayout
@@ -87,7 +75,7 @@
             android:gravity="center"
             android:text="저는 농인입니다.\n버튼을 누르고 음성을 입력해주세요"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
     </RelativeLayout>
     <ImageView

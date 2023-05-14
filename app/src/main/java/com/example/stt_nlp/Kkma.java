@@ -166,7 +166,7 @@ public class Kkma extends AppCompatActivity {
                     //else if (test.contains("터/NNB")) { continue; }
 
                     //서술격 조사(VCP) 처리
-                    else if(test.contains("VCP")){
+                    else if(test.contains("VCP")&& !test.contains("가세")){
                         Log.d("here is vcp!", test);
                         //VV앞의 / /에 있는 덩어리 뽑아오기 위한 코드 - split하고
                         String[] splitSentence = test.split("/");
